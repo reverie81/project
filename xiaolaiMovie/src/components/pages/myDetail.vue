@@ -2,38 +2,36 @@
   <div>
     <my-header>
       <my-back slot="back"></my-back>
-      芳华芳华芳华芳华芳华芳华
+      {{movie.Name}}
     </my-header>
     <div class="container detail-container">
       <div class="banner">
         <div class="filter-box"></div>
         <div class="thumbnail">
-          <img src="static/img/movie.jpg" />
+          <img :src="serverIP+movie.ImgUrl"/>
         </div>
         <div class="movie-intr">
-          <h1>芳华</h1>
+          <h1>{{movie.Name}}</h1>
           <div class="star-level">
             <div id="star_con" class="star-vote">
               <span id="add_star" class="add-star"></span>
-              <span id="del_star" class="del-star"></span>
+              <span id="del_star" class="del-star" :style="{left:left*19+'px'}"></span>
             </div>
             <div class="point">
-              9.5
+              {{movie.Rate}}
             </div>
           </div>
-          <p>剧情、爱情、战争</p>
-          <p>主演，黄轩，苗苗</p>
-          <p>上映时间：2017-12-15大陆</p>
+          <p>{{movie.Type}}</p>
+          <p>主演，{{movie.Actors}}</p>
+          <p>上映时间：{{movie.ReleaseTime}}</p>
         </div>
       </div>
       <div class="movie-recommend">
-        <p>本片讲述了上世纪七十到八十年代充满理想和激情的军队文工团，一群正值芳华的青春少年，经历着成长中的爱情萌发与充斥变数的人生命运。乐于助人、质朴善良的刘峰（黄轩 饰），和从农村来，屡遭文工团女兵歧视与排斥的何小萍（苗苗
-          饰），“意外”离开了浪漫安逸的文工团，卷入了残酷的战争，在战场上继续绽放着血染的芳华。他们感受着集体生活的痛与暖、故人的分别与重逢，还有时代变革之下，每个人的渺小脆弱和无力招架。而昔日的文工团战友萧穗子（钟楚曦
-          饰）、林丁丁（杨采钰 饰）、郝淑雯（李晓峰 饰）、陈灿（王天辰 饰）等人，在大时代的背景之下，每个人的命运大相径庭，拥有着出人意料的人生归宿……从来不需要想起，永远也不会忘记。</p>
+        <p>{{movie.Intro}}</p>
       </div>
     </div>
     <div class="order-bar">
-      <router-link to="/cinema">立即订购</router-link>
+      <router-link :to="{path:'/cinema',query:{id:movie.MovieID,name:movie.Name,rate:movie.Rate}}">立即订购</router-link>
     </div>
   </div>
 </template>
@@ -41,10 +39,46 @@
 <script>
   import myHeader from '@/components/views/myHeader'
   import myBack from '@/components/views/myBack'
+  import { Toast } from 'mint-ui'
   export default {
     components: {
       myHeader,
       myBack
+    },
+    data() {
+      return{
+        movie: {},
+        left:0
+      }
+    },
+    created() {
+      this.$http.get('/movie/detail',{
+        params:{
+          MovieID:this.$route.query.id
+        }
+      })
+      .then(res=>{
+        this.movie = res.data.Movie[0]
+        let Rate = this.movie.Rate
+        // console.log(94*(Rate/10))
+
+        if (Rate==10) {
+          this.left=5
+        } else if(Rate<10 && Rate>=8){
+          this.left=4
+        } else if(Rate<8 && Rate>=6){
+          this.left=3
+        } else if(Rate<6 && Rate>=4){
+          this.left=2
+        } else if(Rate<4 && Rate>=2){
+          this.left=1
+        }else{
+          this.left=0
+        }
+      })
+      .catch(err=>{
+        Toast("服务器错误")
+      })
     }
   }
 </script>

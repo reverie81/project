@@ -40,11 +40,11 @@ export default {
   methods:{
     reg(){
       if(!this.username){
-        alert("用户名不能为空")
+        Toast("用户名不能为空")
         return;
       }
       if(this.password!=this.passwords){
-        alert("密码不一致")
+        Toast("密码不一致")
         return;
       }
       this.$http.post("/reg",{
@@ -56,7 +56,7 @@ export default {
         Toast(err.data.errMsg)
         this.$router.push("/login")
       })
-      .catch(res=>{
+      .catch(err=>{
         Toast("服务器错误")
       })
     }

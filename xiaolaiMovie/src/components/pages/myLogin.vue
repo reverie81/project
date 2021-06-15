@@ -9,8 +9,8 @@
         <input type="password" placeholder="请输入密码" v-model="password" />
       </label>
     </div>
-    <div class="login-btn">
-      <router-link to="login" @click.prevent="login">登录</router-link>
+    <div class="login-btn" @click.prevent="login">
+      <router-link to="login">登录</router-link>
     </div>
     <div class="link-reg">
       <router-link to="reg">还没账号？</router-link>
@@ -49,7 +49,7 @@
               this.$router.push("/home")
             }
           })
-          .catch(res=>{
+          .catch(err=>{
             Toast("服务器异常")
           })
       }

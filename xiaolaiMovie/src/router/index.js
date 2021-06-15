@@ -19,39 +19,48 @@ export default new Router({
   routes: [
     {
      path:'/',
-     component:myIndex
+     component:myIndex,
+	 meta:{requiresAuth:false} // 路由元信息
     },
     {
       path:'/home',
       component:myHome,
+	  meta: { requiresAuth: false }
     },
     {
       path:'/detail',
-      component:myDetail
+      component:myDetail,
+	  meta: { requiresAuth: true }
     },
     {
       path:'/cinema',
-      component:myCinema
+      component:myCinema,
+	  meta: { requiresAuth: true }
     },
     {
       path:'/order',
-      component:myOrder
+      component:myOrder,
+	  meta: { requiresAuth: true }
     },
     {
       path:'/seat',
-      component:mySeat
+      component:mySeat,
+	  meta: { requiresAuth: true }
     },
     {
       path:'/user',
-      component:myUser
+      component:myUser,
+	  meta: { requiresAuth: true }
     },
     {
       path:'/login',
-      component:myLogin
+      component:myLogin,
+	  meta: { requiresAuth: false }
     },
     {
       path:'/reg',
-      component:myReg
+      component:myReg,
+	  meta: { requiresAuth: false }
     },
   ]
 })

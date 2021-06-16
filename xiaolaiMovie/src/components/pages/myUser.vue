@@ -28,7 +28,7 @@
         </a>
       </div>
       <div class="login-btn user-btn">
-        <a href="#/home">点击退出</a>
+        <a href="#/home" @click.prevent="logout">点击退出</a>
       </div>
       <div class="user-footer">
         <div class="user-logo"><img src="static/img/LOGO_gray.png" /></div>
@@ -46,6 +46,13 @@
     components:{
       myHeader,
       myFooter
+    },
+    methods:{
+      logout(){
+        localStorage.removeItem("username")
+        localStorage.removeItem("tokenID")
+        this.$route.push('/home')
+      }
     }
   }
 </script>

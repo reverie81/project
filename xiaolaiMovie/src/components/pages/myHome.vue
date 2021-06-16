@@ -17,7 +17,7 @@
           <div class="grade">
             {{v.Rate}}
           </div>
-          <div class="buy"><router-link :to="{path:'/cinema',query:{id:v.MovieID,name:v.Name,rate:v.Rate}}">购票</router-link></div>
+          <div class="buy"><router-link :to="{path:'/cinema',query:{id:v.MovieID}}">购票</router-link></div>
         </router-link>
       </div>
 

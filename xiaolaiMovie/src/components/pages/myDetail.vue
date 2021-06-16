@@ -8,7 +8,7 @@
       <div class="banner">
         <div class="filter-box"></div>
         <div class="thumbnail">
-          <img :src="serverIP+movie.ImgUrl"/>
+          <img :src="serverIP+movie.ImgUrl">
         </div>
         <div class="movie-intr">
           <h1>{{movie.Name}}</h1>
@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="order-bar">
-      <router-link :to="{path:'/cinema',query:{id:movie.MovieID,name:movie.Name,rate:movie.Rate}}">立即订购</router-link>
+      <router-link :to="{path:'/cinema',query:{id:movie.MovieID}}">立即订购</router-link>
     </div>
   </div>
 </template>
@@ -60,7 +60,6 @@
       .then(res=>{
         this.movie = res.data.Movie[0]
         let Rate = this.movie.Rate
-        // console.log(94*(Rate/10))
 
         if (Rate==10) {
           this.left=5

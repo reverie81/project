@@ -79,7 +79,9 @@
         // 删除订单
         if (this.dseat[i].active == "active") {
           this.dseat[i].active = ""
-          let index = this.ticketArray.findIndex((v,i)=>{return v.Row==Row&&v.Col==Col})
+          let index = this.ticketArray.findIndex((v, i) => {
+            return v.Row == Row && v.Col == Col
+          })
           this.ticketArray.splice(index, 1)
         }
       },
@@ -89,6 +91,10 @@
         this.ticketArray.splice(i, 1)
       },
       order() {
+        if (!this.ticketArrar) {
+          Toast("未选座")
+          return;
+        }
         this.$http.post("/orders", {
             username: localStorage.username,
             tokenID: localStorage.tokenID,
@@ -104,7 +110,7 @@
               Toast("登录过期")
             }
           })
-          .catch(err=>{
+          .catch(err => {
             Toast("服务器错误")
           })
       }

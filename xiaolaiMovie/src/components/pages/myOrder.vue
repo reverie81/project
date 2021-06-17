@@ -5,9 +5,9 @@
       <div class="order-item" v-for="(v,i) in list">
         <dl>
           <dt><img :src="serverIP+v.ImgUrl" /></dt>
-          <dd><em>{{v.Name}} 4张</em></dd>
+          <dd><em>{{v.Name}} {{v.ticketArray.length}}张</em></dd>
           <dd>{{v.ReleaseTime}}</dd>
-          <dd v-for="(a,b) in v.ticketArray">{{v.Room}},{{a.Row}}排{{a.Col}}座</dd>
+          <dd>{{v.Room}},<span v-for="(a,b) in v.ticketArray">{{a.Row}}排{{a.Col}}座，</span></dd>
         </dl>
         <div class="status">
           <em>总价：{{v.Price}}元</em><span>已完成</span>

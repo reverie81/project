@@ -1,0 +1,41 @@
+/* reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/* common */
+body {
+	background-color: #E1E5EE;
+}
+/* main */
+main {
+	max-width: 750px;
+	margin: 0 auto;
+	margin-top: 10%;
+}
+
+main input {
+	margin-bottom: 10px;
+	padding: 5px 20px;
+	width: 100%;
+	height: 50px;
+	background-color: #fff;
+	border: none;
+	outline: none;
+}
+
+
+main .btn {
+	margin: 18px auto 0;
+	max-width: 750px;
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	background-color: #39435a;
+	color: #fff;
+	font-size: 18px;
+}
